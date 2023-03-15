@@ -6,16 +6,17 @@ const AIR_RESISTENCE = 0.05
 
 var motion = Vector2.ZERO
 var idle = "idle_front"
+var isAttacking = false;
 
 #система передвижения
 func _physics_process(delta):
-	#обработка события нажатия клавишь
+	#обработка события нажатия клавиш
 	var x_input = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	var y_input = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-	if x_input != 0:
+	if x_input != 0 && isAttacking == false:
 		motion.x += x_input * ACCELERATION * delta
 		motion.x = clamp(motion.x, -MAX_SPEED, MAX_SPEED)
-	if y_input != 0:
+	if y_input != 0 && isAttacking == false:
 		motion.y += y_input * ACCELERATION * delta
 		motion.y = clamp(motion.y, -MAX_SPEED, MAX_SPEED)
 	motion = move_and_slide(motion, Vector2.UP)
@@ -28,23 +29,59 @@ func _physics_process(delta):
 
 	#анимация
 	var anim = "idle_front" 	
-	if x_input > 0:
-		anim = "walk_right"
-		idle = "idle_right"
-	if x_input < 0:
-		anim = "walk_left"
-		idle = "idle_left"
-	if y_input > 0:
-		anim = "walk_front"
-		idle = "idle_front"
-	if y_input < 0:
-		anim = "walk_back"
-		idle = "idle_back"
-	if ((x_input == 0 ) and (y_input == 0 )):
-			anim=idle
-	if $Hort.animation != anim:
-		$Hort.play(anim)
+	if isAttacking == false:
+		if y_input > 0:
+			anim = "walk_front"
+			idle = "idle_front"
+			$Hort.play(anim)
+		elif y_input < 0:
+			anim = "walk_back"
+			idle = "idle_back"
+			$Hort.play(anim)
+		elif x_input > 0:
+			anim = "walk_right"
+			idle = "idle_right"
+			$Hort.play(anim)
+		elif x_input < 0:
+			anim = "walk_left"
+			idle = "idle_left"
+			$Hort.play(anim)
+
+	if Input.is_action_just_pressed("attack"):
+		if (idle == "idle_right"):
+			$Hort.play("attack");
+			$AttackArea/AttackRight.disabled = false;		
+			isAttacking = true;
+		if (idle == "idle_left"):
+			$Hort.play("attack");
+			$AttackArea/AttackLeft.disabled = false;		
+			isAttacking = true;
+		if (idle == "idle_back"):
+			$Hort.play("attack");
+			$AttackArea/AttackUp.disabled = false;		
+			isAttacking = true;
+		if (idle == "idle_front"):
+			$Hort.play("attack");
+			$AttackArea/AttackDown.disabled = false;		
+			isAttacking = true;
 		
+		
+	if ((x_input == 0 ) and (y_input == 0 )) and isAttacking == false:
+			anim=idle
+			$Hort.play(anim)
+
+#	if $Hort.animation != anim:
+#		$Hort.play(anim)
+#конец проигрывания анимации атаки
+func _on_Hort_animation_finished():
+	if $Hort.animation == "attack":
+		$AttackArea/AttackRight.disabled = true;
+		$AttackArea/AttackLeft.disabled = true;
+		$AttackArea/AttackUp.disabled = true;
+		$AttackArea/AttackDown.disabled = true;
+		isAttacking = false;
+
+
 #задел на характеристики персонажа
 
 var vision_lvl = 0

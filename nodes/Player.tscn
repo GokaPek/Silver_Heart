@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://sprites/persons/hort/hort_front.png" type="Texture" id=1]
 [ext_resource path="res://sprites/persons/hort/walk_left/f44b6b328f02133b.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://sprites/persons/hort/hort_left.png" type="Texture" id=4]
 [ext_resource path="res://sprites/persons/hort/hort_right.png" type="Texture" id=5]
 [ext_resource path="res://sprites/persons/hort/hort_back.png" type="Texture" id=6]
+[ext_resource path="res://nodes/Player.gd" type="Script" id=7]
 [ext_resource path="res://sprites/persons/hort/walk_front/2.png" type="Texture" id=18]
 [ext_resource path="res://sprites/persons/hort/walk_front/8.png" type="Texture" id=19]
 [ext_resource path="res://sprites/persons/hort/walk_back/603c2ea47bc9743c.png" type="Texture" id=20]
@@ -134,6 +135,11 @@ region = Rect2( 1152, 0, 128, 128 )
 
 [sub_resource type="SpriteFrames" id=11]
 animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "attack",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 6 ) ],
 "loop": true,
 "name": "idle_back",
@@ -179,10 +185,20 @@ animations = [ {
 radius = 65.0
 height = 0.0
 
+[sub_resource type="RectangleShape2D" id=32]
+extents = Vector2( 0.405405, 0.22973 )
+
+[sub_resource type="RectangleShape2D" id=33]
+extents = Vector2( 43.875, 23.75 )
+
+[sub_resource type="RectangleShape2D" id=34]
+extents = Vector2( 39.125, 4.5 )
+
 [node name="Player" type="KinematicBody2D"]
+script = ExtResource( 7 )
 
 [node name="Hort" type="AnimatedSprite" parent="."]
-position = Vector2( 346, 500 )
+position = Vector2( 342, 494 )
 scale = Vector2( 3.69336, 3.69336 )
 frames = SubResource( 11 )
 animation = "idle_right"
@@ -194,3 +210,28 @@ shape = SubResource( 1 )
 [node name="CameraPlayer" type="Camera2D" parent="."]
 position = Vector2( 324, 504 )
 editor_draw_drag_margin = true
+
+[node name="AttackArea" type="Area2D" parent="." groups=["Sword"]]
+
+[node name="AttackRight" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2( 436, 444 )
+scale = Vector2( 111, 111 )
+shape = SubResource( 32 )
+disabled = true
+
+[node name="AttackLeft" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2( 249, 447 )
+shape = SubResource( 33 )
+disabled = true
+
+[node name="AttackUp" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2( 342, 355 )
+shape = SubResource( 34 )
+disabled = true
+
+[node name="AttackDown" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2( 341, 513 )
+shape = SubResource( 34 )
+disabled = true
+
+[connection signal="animation_finished" from="Hort" to="." method="_on_Hort_animation_finished"]
