@@ -8,8 +8,10 @@ margin_bottom = 81.0
 script = ExtResource( 2 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
-margin_right = 722.0
-margin_bottom = 379.0
+margin_left = -162.0
+margin_top = 6.0
+margin_right = 560.0
+margin_bottom = 385.0
 
 [node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
 custom_constants/vseparation = 100

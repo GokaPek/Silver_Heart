@@ -144,3 +144,7 @@ func do_quest_mission(name, name_quest):
 	if name in quests.keys():
 		if name_quest in quests[name].keys():
 			quests[name][name_quest]=true
+			
+			
+#деньги
+var money = 0
