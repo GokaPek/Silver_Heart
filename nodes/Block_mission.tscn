@@ -5,7 +5,6 @@
 [ext_resource path="res://nodes/Block_mission.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]
-size = 8
 font_data = ExtResource( 2 )
 
 [node name="Block_mission" type="TextureRect"]

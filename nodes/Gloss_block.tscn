@@ -4,7 +4,6 @@
 [ext_resource path="res://nodes/Gloss_block.gd" type="Script" id=2]
 
 [sub_resource type="DynamicFont" id=2]
-size = 8
 outline_size = 1
 outline_color = Color( 0.776471, 0.431373, 0.0470588, 1 )
 font_data = ExtResource( 1 )

@@ -126,6 +126,7 @@ func get_gloss_world(name, inf):
 
 #система квестов
 var quests = {}
+var complited_quests = {}
 func get_quest(name):
 	if name in quests.keys():
 		 return;
@@ -140,6 +141,10 @@ func get_quest_mission(name, name_quest):
 func do_quest(name):
 	if name in quests.keys():
 		 quests[name]=null
+	if name in complited_quests.keys():
+		 return;
+	else:
+		complited_quests[name] = {}
 func do_quest_mission(name, name_quest):
 	if name in quests.keys():
 		if name_quest in quests[name].keys():

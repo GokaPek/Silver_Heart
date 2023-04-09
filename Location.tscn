@@ -46,6 +46,11 @@ script = ExtResource( 14 )
 
 [node name="Font" parent="." instance=ExtResource( 3 )]
 
+[node name="Comod" parent="Font" instance=ExtResource( 6 )]
+
+[node name="Table" parent="Font" instance=ExtResource( 4 )]
+position = Vector2( 506, -38 )
+
 [node name="Street_2_1" type="StaticBody2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="Street_2_1"]
@@ -94,12 +99,7 @@ script = ExtResource( 15 )
 position = Vector2( 657, 2957.25 )
 shape = SubResource( 1 )
 
-[node name="Table" parent="." instance=ExtResource( 4 )]
-position = Vector2( 506, -38 )
-
 [node name="PDA" parent="." instance=ExtResource( 5 )]
-
-[node name="Comod" parent="." instance=ExtResource( 6 )]
 
 [node name="Items" parent="." instance=ExtResource( 8 )]
 

@@ -1,10 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://nodes/Block_mission.tscn" type="PackedScene" id=1]
 [ext_resource path="res://fonts/PressStart2P-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://nodes/Block_quest.gd" type="Script" id=3]
-[ext_resource path="res://nodes/ControlM.gd" type="Script" id=4]
-[ext_resource path="res://nodes/PanelM.gd" type="Script" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 2 )
@@ -23,31 +20,9 @@ margin_bottom = 18.0
 custom_fonts/font = SubResource( 1 )
 text = "Квест"
 
-[node name="ControlM" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-script = ExtResource( 4 )
-
-[node name="PanelM" type="NinePatchRect" parent="ControlM"]
-margin_right = 40.0
-margin_bottom = 40.0
-script = ExtResource( 5 )
-
-[node name="Scroll" type="ScrollContainer" parent="ControlM/PanelM"]
-margin_left = 4.0
-margin_top = 22.0
-margin_right = 299.0
-margin_bottom = 78.0
-
-[node name="Grid" type="GridContainer" parent="ControlM/PanelM/Scroll"]
-margin_bottom = 25.0
-custom_constants/vseparation = 25
-
-[node name="Block_mission" parent="ControlM/PanelM/Scroll/Grid" instance=ExtResource( 1 )]
-margin_right = 0.0
-margin_bottom = 0.0
-
-[node name="Block_mission2" parent="ControlM/PanelM/Scroll/Grid" instance=ExtResource( 1 )]
-margin_top = 25.0
-margin_right = 0.0
-margin_bottom = 25.0
+[node name="Button" type="Button" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = -3.0
+margin_top = -1.0
+margin_right = 265.0
+margin_bottom = 22.0
