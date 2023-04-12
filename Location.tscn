@@ -1,7 +1,7 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://nodes/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://sprites/region_1/location_2_1/font.png" type="Texture" id=2]
+[ext_resource path="res://sprites/region_1/location_2_1/Font1.png" type="Texture" id=2]
 [ext_resource path="res://nodes/Font_Loc1.tscn" type="PackedScene" id=3]
 [ext_resource path="res://nodes/Table.tscn" type="PackedScene" id=4]
 [ext_resource path="res://PDA.tscn" type="PackedScene" id=5]
@@ -19,6 +19,7 @@
 [ext_resource path="res://sprites/region_1/location_2_1/trash5.png" type="Texture" id=17]
 [ext_resource path="res://sprites/region_1/location_2_1/trash3.png" type="Texture" id=18]
 [ext_resource path="res://sprites/region_1/location_2_1/trash2.png" type="Texture" id=19]
+[ext_resource path="res://sprites/region_1/location_2_1/Font2.png" type="Texture" id=20]
 
 [sub_resource type="SegmentShape2D" id=2]
 a = Vector2( 5072, 394 )
@@ -48,7 +49,19 @@ script = ExtResource( 14 )
 
 [node name="Street_2_1" type="StaticBody2D" parent="."]
 
-[node name="Sprite" type="Sprite" parent="Street_2_1"]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Street_2_1"]
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Street_2_1/ParallaxBackground"]
+motion_mirroring = Vector2( 0.5, 0 )
+
+[node name="Sprite" type="Sprite" parent="Street_2_1/ParallaxBackground/ParallaxLayer2"]
+position = Vector2( 1982, 2723 )
+scale = Vector2( 2, 2.183 )
+texture = ExtResource( 20 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Street_2_1/ParallaxBackground"]
+
+[node name="Sprite" type="Sprite" parent="Street_2_1/ParallaxBackground/ParallaxLayer"]
 position = Vector2( 4079, 2964 )
 scale = Vector2( 3.54348, 3.54348 )
 texture = ExtResource( 2 )
@@ -104,7 +117,7 @@ position = Vector2( 506, -38 )
 [node name="Items" parent="." instance=ExtResource( 8 )]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 129, 31 )
+position = Vector2( 400, 2600 )
 
 [node name="Xray" parent="." instance=ExtResource( 9 )]
 
@@ -117,3 +130,5 @@ script = ExtResource( 12 )
 
 [node name="Quest_adder" type="Node2D" parent="."]
 script = ExtResource( 13 )
+
+[editable path="Player"]
