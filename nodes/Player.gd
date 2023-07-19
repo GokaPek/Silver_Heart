@@ -54,39 +54,52 @@ func _physics_process(delta):
 			idle = "idle_left"
 			$Hort.play(anim)
 
-	if Input.is_action_just_pressed("attack"):
-		if (idle == "idle_right"):
-			$Hort.play("attack");
-			$AttackArea/AttackRight.disabled = false;
-			isAttacking = true;
-		if (idle == "idle_left"):
-			$Hort.play("attack");
-			$AttackArea/AttackLeft.disabled = false;
-			isAttacking = true;
-		if (idle == "idle_back"):
-			$Hort.play("attack");
-			$AttackArea/AttackUp.disabled = false;
-			isAttacking = true;
-		if (idle == "idle_front"):
-			$Hort.play("attack");
-			$AttackArea/AttackDown.disabled = false;
-			isAttacking = true;
+	if Input.is_action_just_pressed("attack_start"):
+#		if (idle == "idle_right"):
+#			$Hort.play("attack");
+#			$AttackArea/AttackRight.disabled = false;
+#			isAttacking = true;
+#		if (idle == "idle_left"):
+#			$Hort.play("attack");
+#			$AttackArea/AttackLeft.disabled = false;
+#			isAttacking = true;
+#		if (idle == "idle_back"):
+#			$Hort.play("attack");
+#			$AttackArea/AttackUp.disabled = false;
+#			isAttacking = true;
+#		if (idle == "idle_front"):
+#			$Hort.play("attack");
+#			$AttackArea/AttackDown.disabled = false;
+#			isAttacking = true;
+		$Hort.play("attack_start")
+		$AttackArea/AttackRight.disabled = false
+		isAttacking = true
+	if Input.is_action_just_pressed("attack_up"):
+		$Hort.play("blade_up")
+		$AttackArea/AttackRight.disabled = false
+		isAttacking = true
 
 
+	if Input.is_action_just_pressed("attack_down"):
+		$Hort.play("blade_down")
+		$AttackArea/AttackRight.disabled = false
+		isAttacking = true
+	if Input.is_action_just_pressed("attack_finish"):
+		$Hort.play("attack_finish",true)
+		$AttackArea/AttackRight.disabled = false
+		isAttacking = true
 	if ((x_input == 0 ) and (y_input == 0 )) and isAttacking == false:
 		anim=idle
 		$Hort.play(anim)
-
-
 #конец проигрывания анимации атаки
 func _on_Hort_animation_finished():
-	if $Hort.animation == "attack":
+	if $Hort.animation == "attack_finish":
 		$AttackArea/AttackRight.disabled = true;
 		$AttackArea/AttackLeft.disabled = true;
 		$AttackArea/AttackUp.disabled = true;
 		$AttackArea/AttackDown.disabled = true;
 		isAttacking = false;
-
+#хз как должно быть, но пока шо работает так: мы вытаскиваем с помощью blade_up клинок и махаемся им. И пока он у нас в руках, двигаться мы, як я разумею, не можэ. И как только мы запихиваем сей клинок обратно, двигаться могем. Чет муторно как-то, но шо естьб
 
 #задел на характеристики персонажа
 
