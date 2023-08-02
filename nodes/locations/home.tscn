@@ -19,7 +19,7 @@ script = ExtResource( 12 )
 
 [node name="CameraLoc" type="Camera2D" parent="."]
 position = Vector2( 765, 451 )
-zoom = Vector2( 0.69, 0.69 )
+zoom = Vector2( 0.8, 0.8 )
 editor_draw_drag_margin = true
 script = ExtResource( 15 )
 

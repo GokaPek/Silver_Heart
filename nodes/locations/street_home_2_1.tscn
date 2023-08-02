@@ -101,7 +101,10 @@ position = Vector2( 657, 2957.25 )
 shape = SubResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
-position = Vector2( 400, 2600 )
+position = Vector2( 405, 2421 )
+
+[node name="CameraPlayer" parent="Player" index="2"]
+zoom = Vector2( 0.8, 0.8 )
 
 [node name="Xray" parent="." instance=ExtResource( 8 )]
 
