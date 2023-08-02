@@ -1,0 +1,52 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://nodes/Table.tscn" type="PackedScene" id=1]
+[ext_resource path="res://nodes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://nodes/Font_Loc1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://nodes/Comod.tscn" type="PackedScene" id=4]
+[ext_resource path="res://PDA.tscn" type="PackedScene" id=5]
+[ext_resource path="res://nodes/Back_menue.tscn" type="PackedScene" id=6]
+[ext_resource path="res://nodes/Items.tscn" type="PackedScene" id=7]
+[ext_resource path="res://nodes/Esc_menue.tscn" type="PackedScene" id=8]
+[ext_resource path="res://nodes/Xray.tscn" type="PackedScene" id=9]
+[ext_resource path="res://nodes/locations/home.gd" type="Script" id=12]
+[ext_resource path="res://Gloss_adder.gd" type="Script" id=13]
+[ext_resource path="res://Quest_adder.gd" type="Script" id=14]
+[ext_resource path="res://CameraLoc.gd" type="Script" id=15]
+
+[node name="home" type="Node2D"]
+script = ExtResource( 12 )
+
+[node name="CameraLoc" type="Camera2D" parent="."]
+position = Vector2( 765, 451 )
+zoom = Vector2( 0.69, 0.69 )
+editor_draw_drag_margin = true
+script = ExtResource( 15 )
+
+[node name="Font" parent="." instance=ExtResource( 3 )]
+
+[node name="Comod" parent="Font" instance=ExtResource( 4 )]
+
+[node name="Table" parent="Font" instance=ExtResource( 1 )]
+position = Vector2( 506, -38 )
+
+[node name="PDA" parent="." instance=ExtResource( 5 )]
+
+[node name="Items" parent="." instance=ExtResource( 7 )]
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 897, 53 )
+
+[node name="Xray" parent="." instance=ExtResource( 9 )]
+
+[node name="Esc_menue" parent="." instance=ExtResource( 8 )]
+
+[node name="Back_menue" parent="." instance=ExtResource( 6 )]
+
+[node name="Gloss_adder" type="Node2D" parent="."]
+script = ExtResource( 13 )
+
+[node name="Quest_adder" type="Node2D" parent="."]
+script = ExtResource( 14 )
+
+[editable path="Player"]

@@ -8,8 +8,7 @@ func _ready():
 
 func _input(event):
 	if (event.is_action_pressed("e_click") and active):
-		get_parent().get_parent().get_node("Player").global_position.x = 960
-		get_parent().get_parent().get_node("Player").global_position.y = 60
+		get_tree().change_scene("res://nodes/locations/home.tscn")
 
 
 func _on_NPC_body_entered(body):
