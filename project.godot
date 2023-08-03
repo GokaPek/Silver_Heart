@@ -81,7 +81,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Silver_Heart"
-run/main_scene="res://nodes/locations/home.tscn"
+run/main_scene="res://nodes/MainMenue.tscn"
 config/icon="res://icon.png"
 
 [display]
