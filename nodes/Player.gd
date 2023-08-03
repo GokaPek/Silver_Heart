@@ -87,15 +87,18 @@ func _on_Hort_animation_finished():
 		$AttackArea/AttackDown.disabled = true;
 		isAttacking = false;
 
+		
+var stats = ConfigFile.new()
+var err = stats.load("user://stats.cfg")
 
 #задел на характеристики персонажа
 
-var vision_lvl = 0
+var vision_lvl = stats.get_value("Player", "vision_lvl")
 
 #система предметов
-var inventory = {}
+var inventory = stats.get_value("Player", "inventory")
 func pick(item):
-	var it = item.get_name()
+	var it = item.get_name() 
 	#print("Get %s" % str(it))
 	if it in inventory.keys():
 		inventory[it] += item.get_amount() 
@@ -104,9 +107,9 @@ func pick(item):
 		
 
 #система глоссария
-var gloss = {}
-var gloss_persons = {}
-var gloss_world = {}
+var gloss = stats.get_value("Player", "gloss")
+var gloss_persons = stats.get_value("Player", "gloss_persons")
+var gloss_world = stats.get_value("Player", "gloss_world")
 func get_gloss(name, inf):
 	if name in gloss.keys():
 		 return;
@@ -125,8 +128,8 @@ func get_gloss_world(name, inf):
 		
 
 #система квестов
-var quests = {}
-var complited_quests = {}
+var quests = stats.get_value("Player", "quests")
+var complited_quests = stats.get_value("Player", "complited_quests")
 func get_quest(name):
 	if name in quests.keys():
 		 return;
@@ -152,4 +155,4 @@ func do_quest_mission(name, name_quest):
 			
 			
 #деньги
-var money = 0
+var money = stats.get_value("Player", "money")
