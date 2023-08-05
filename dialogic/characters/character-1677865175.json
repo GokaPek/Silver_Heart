@@ -8,8 +8,8 @@
 	"name": "PDA.json",
 	"nickname": "",
 	"nickname_bool": false,
-	"offset_x": -370,
-	"offset_y": -150,
+	"offset_x": -300,
+	"offset_y": -240,
 	"portraits": [
 		{
 			"name": "Default",

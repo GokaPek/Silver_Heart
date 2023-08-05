@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://sprites/region_1/location_1/room.png" type="Texture" id=1]
-[ext_resource path="res://music/bass 4game.mp3" type="AudioStream" id=2]
+[ext_resource path="res://music/sad.mp3" type="AudioStream" id=2]
 [ext_resource path="res://nodes/AreaCollisionCam.gd" type="Script" id=3]
 [ext_resource path="res://nodes/TelePort.gd" type="Script" id=4]
 

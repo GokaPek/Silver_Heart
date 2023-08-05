@@ -1,0 +1,153 @@
+{
+	"events": [
+		{
+			"animation": "slide_in_right.gd",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1691238210.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": true,
+				"3": false,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1691238398.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": true,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"character": "character-1691238210.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Здарова, милок. Как жизнь?"
+		},
+		{
+			"choice": "Здравствуй",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1691238398.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Здарова, как жизнь?"
+		},
+		{
+			"choice": "Знакомы?",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1691238398.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Здравствуйте. Я здесь давно живу, но вас ещё не видел. Вы откуда?"
+		},
+		{
+			"character": "character-1691238210.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Отовсюду. Я здесь везде живу. Впрочем не обо мне речь."
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"character": "character-1691238210.json",
+			"event_id": "dialogic_010",
+			"options": [
+
+			],
+			"portrait": "",
+			"question": "Ты когда-нибудь слышал о псиониках?"
+		},
+		{
+			"choice": "Нет",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"character": "character-1691238210.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Фантастические существа. Сегодня слышал про них, э... В программе по галопроектору."
+		},
+		{
+			"character": "character-1691238210.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Они бывают трёх рангов. Третий ранг самые слабые. Они гипнотизируют движениями,  прикосновениями, базовой психологией. К ним относятся миллионы живых организмов."
+		},
+		{
+			"character": "character-1691238210.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Второй ранг это либо комбинирующие, либо обладающие более сложными механизмами гипноза, такими как вспышки света, элементарные феромоны и токсины, звуки и т.д. К таким существам относятся крийцы например."
+		},
+		{
+			"character": "character-1691238210.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Первый ранг это самые опысне. Таких инопланетян изолируют от цивилизованного общества, ведь раз эволюция позволила им этого достичь, то это их главный инструмент в достижении каких-либо целей, будь то питание или паразитоз. К таким кстати относятся крайны - черви в экзоскелетах, которых ты видишь на улицах. Но они безвредны, т.к. обитают обычно в воде. Гораздно опаснее другие виды."
+		},
+		{
+			"choice": "Да",
+			"condition": "",
+			"definition": "",
+			"event_id": "dialogic_011",
+			"value": ""
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"character": "character-1691238210.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Береги себя."
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 1
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1691238181.json",
+		"name": "grand_pa"
+	}
+}

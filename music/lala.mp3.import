@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/lala.mp3-727920f7f7354f13873a18ecd0290cf0.mp3str"
+
+[deps]
+
+source_file="res://music/lala.mp3"
+dest_files=[ "res://.import/lala.mp3-727920f7f7354f13873a18ecd0290cf0.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/strange_hh.mp3-268091c593017fc829c9852ba9372eb1.mp3str"
+
+[deps]
+
+source_file="res://music/strange_hh.mp3"
+dest_files=[ "res://.import/strange_hh.mp3-268091c593017fc829c9852ba9372eb1.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

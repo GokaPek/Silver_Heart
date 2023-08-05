@@ -1,0 +1,21 @@
+{
+	"color": "#ffbfb151",
+	"description": "",
+	"display_name": "Хорт Ванкувер",
+	"display_name_bool": true,
+	"id": "character-1691238398.json",
+	"mirror_portraits": false,
+	"name": "Hort",
+	"nickname": "",
+	"nickname_bool": false,
+	"offset_x": 0,
+	"offset_y": 0,
+	"portraits": [
+		{
+			"name": "Default",
+			"path": "res://sprites/persons/hort/hort_right.png"
+		}
+	],
+	"scale": 500,
+	"theme": "default-theme.cfg"
+}

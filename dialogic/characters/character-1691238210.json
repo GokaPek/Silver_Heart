@@ -1,0 +1,21 @@
+{
+	"color": "#ff000266",
+	"description": "",
+	"display_name": "Дедуля",
+	"display_name_bool": true,
+	"id": "character-1691238210.json",
+	"mirror_portraits": false,
+	"name": "GrandPa",
+	"nickname": "",
+	"nickname_bool": false,
+	"offset_x": 400,
+	"offset_y": 0,
+	"portraits": [
+		{
+			"name": "Default",
+			"path": "res://sprites/region_1/location_2_1/grandfather/grandfather.png"
+		}
+	],
+	"scale": 500,
+	"theme": "default-theme.cfg"
+}
