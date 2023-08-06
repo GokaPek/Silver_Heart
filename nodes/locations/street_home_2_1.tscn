@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://nodes/locations/street_home_2_1.gd" type="Script" id=1]
 [ext_resource path="res://nodes/Esc_menue.tscn" type="PackedScene" id=2]
@@ -7,7 +7,8 @@
 [ext_resource path="res://sprites/region_1/location_2_1/block_post.png" type="Texture" id=5]
 [ext_resource path="res://nodes/Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://nodes/npc/Crazy_granpa.tscn" type="PackedScene" id=7]
-[ext_resource path="res://nodes/Xray.tscn" type="PackedScene" id=8]
+[ext_resource path="res://nodes/xrays/Xray.tscn" type="PackedScene" id=8]
+[ext_resource path="res://music/background_of_city.mp3" type="AudioStream" id=9]
 [ext_resource path="res://sprites/region_1/location_2_1/Font1.png" type="Texture" id=11]
 [ext_resource path="res://TeleportInRoom.gd" type="Script" id=12]
 [ext_resource path="res://Gloss_adder.gd" type="Script" id=13]
@@ -100,6 +101,12 @@ shape = SubResource( 4 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Street_2_1"]
 stream = ExtResource( 3 )
+autoplay = true
+
+[node name="Background" type="AudioStreamPlayer" parent="Street_2_1"]
+pause_mode = 2
+stream = ExtResource( 9 )
+volume_db = -2.378
 autoplay = true
 
 [node name="Crazy_granpa" parent="." instance=ExtResource( 7 )]
