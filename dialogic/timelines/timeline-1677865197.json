@@ -6,7 +6,7 @@
 			"animation_wait": false,
 			"change_mirror_portrait": false,
 			"change_z_index": false,
-			"character": "character-1677865175.json",
+			"character": "character-1691238398.json",
 			"event_id": "dialogic_002",
 			"mirror_portrait": false,
 			"portrait": "Default",
@@ -22,7 +22,7 @@
 			"z_index": 12
 		},
 		{
-			"character": "character-1677865175.json",
+			"character": "character-1691238398.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
 			"text": "Галографический планшет. На таких часто можно найти интересную информацию, но мой теперь служит ночником."

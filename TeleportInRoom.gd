@@ -21,11 +21,12 @@ func _input(event):
 		#система квестов
 		stats.set_value("Player", "quests", player.quests)
 		stats.set_value("Player", "complited_quests", player.complited_quests)
+		#логические переменные 
+		stats.set_value("Player", "bool_var", player.bool_var)
 		#деньги
 		stats.set_value("Player", "money", player.money)
-		
-		get_tree().change_scene("res://nodes/locations/home.tscn")
 		stats.save("user://stats.cfg")
+		get_tree().change_scene("res://nodes/locations/home.tscn")
 
 func _on_NPC_body_entered(body):
 	if body.name == "Player":

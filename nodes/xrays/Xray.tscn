@@ -50,30 +50,33 @@ visible = false
 position = Vector2( 232, 456 )
 scale = Vector2( 1.7, 1.7 )
 frames = SubResource( 7 )
-frame = 2
+frame = 3
 playing = true
 
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="Eye_lvl0"]
 position = Vector2( 748, 502 )
 scale = Vector2( 1.7, 1.7 )
 frames = SubResource( 7 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="AnimatedSprite3" type="AnimatedSprite" parent="Eye_lvl0"]
-position = Vector2( 268, 418 )
+position = Vector2( 283, 418 )
 scale = Vector2( 1.7, 1.7 )
 frames = SubResource( 7 )
+frame = 1
 playing = true
 
 [node name="AnimatedSprite4" type="AnimatedSprite" parent="Eye_lvl0"]
 position = Vector2( 1123, 328 )
 scale = Vector2( 1.7, 1.7 )
 frames = SubResource( 7 )
+frame = 1
 playing = true
 
 [node name="AnimatedSprite5" type="AnimatedSprite" parent="Eye_lvl0"]
-position = Vector2( 464, 374 )
+position = Vector2( 355, 710 )
 scale = Vector2( 1.7, 1.7 )
 frames = SubResource( 7 )
+frame = 1
 playing = true

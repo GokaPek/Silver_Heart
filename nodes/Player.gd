@@ -12,6 +12,7 @@ var isPlayerMoved = true
 
 #система передвижения
 func _physics_process(delta):
+	#print(bool_var)
 	#обработка события нажатия клавишь
 	var x_input = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	var y_input = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
@@ -87,7 +88,7 @@ func _on_Hort_animation_finished():
 		$AttackArea/AttackDown.disabled = true;
 		isAttacking = false;
 
-		
+#загрузка статистики		
 var stats = ConfigFile.new()
 var err = stats.load("user://stats.cfg")
 
@@ -154,5 +155,12 @@ func do_quest_mission(name, name_quest):
 			quests[name][name_quest]=true
 			
 			
+#логические переменные
+var bool_var = stats.get_value("Player", "bool_var")
+func set_bool(name, boolean):
+	if name in bool_var.keys():
+		 return;
+	else:
+		bool_var[name] = boolean
 #деньги
 var money = stats.get_value("Player", "money")
