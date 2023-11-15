@@ -35,7 +35,7 @@ position = Vector2( 506, -38 )
 [node name="Items" parent="." instance=ExtResource( 7 )]
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 897, 53 )
+position = Vector2( 1019, 549 )
 
 [node name="Xray" parent="." instance=ExtResource( 9 )]
 

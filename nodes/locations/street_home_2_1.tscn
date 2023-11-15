@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://nodes/locations/street_home_2_1.gd" type="Script" id=1]
 [ext_resource path="res://nodes/Esc_menue.tscn" type="PackedScene" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://sprites/region_1/location_2_1/trash2.png" type="Texture" id=18]
 [ext_resource path="res://sprites/region_1/location_2_1/trash4.png" type="Texture" id=19]
 [ext_resource path="res://sprites/region_1/location_2_1/Font2.png" type="Texture" id=20]
+[ext_resource path="res://nodes/enemy_nodes/Enemy.tscn" type="PackedScene" id=21]
 
 [sub_resource type="SegmentShape2D" id=1]
 a = Vector2( 5072, 394 )
@@ -119,7 +120,7 @@ texture = ExtResource( 10 )
 position = Vector2( 4566, 618 )
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
-position = Vector2( -35, 119 )
+position = Vector2( -124, 688 )
 
 [node name="CameraPlayer" parent="Player" index="2"]
 zoom = Vector2( 0.9, 0.9 )
@@ -138,23 +139,23 @@ texture = ExtResource( 19 )
 
 [node name="AnimatedSprite" parent="Xray/Eye_lvl0" index="0"]
 position = Vector2( 1892, 473 )
-frame = 0
+frame = 2
 
 [node name="AnimatedSprite2" parent="Xray/Eye_lvl0" index="1"]
 position = Vector2( -725, 589 )
-frame = 4
+frame = 1
 
 [node name="AnimatedSprite3" parent="Xray/Eye_lvl0" index="2"]
 position = Vector2( 711, 458 )
-frame = 3
+frame = 0
 
 [node name="AnimatedSprite4" parent="Xray/Eye_lvl0" index="3"]
 position = Vector2( 4628, 446 )
-frame = 3
+frame = 0
 
 [node name="AnimatedSprite5" parent="Xray/Eye_lvl0" index="4"]
 position = Vector2( 325, 381 )
-frame = 3
+frame = 0
 
 [node name="Esc_menue" parent="." instance=ExtResource( 2 )]
 
@@ -165,6 +166,11 @@ script = ExtResource( 13 )
 
 [node name="Quest_adder" type="Node2D" parent="."]
 script = ExtResource( 14 )
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource( 21 )]
+position = Vector2( 201, 252 )
 
 [editable path="Player"]
 [editable path="Xray"]

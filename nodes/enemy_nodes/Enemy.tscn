@@ -4,7 +4,7 @@
 [ext_resource path="res://sprites/persons/hort/hort_left.png" type="Texture" id=2]
 [ext_resource path="res://sprites/persons/hort/hort_right.png" type="Texture" id=3]
 [ext_resource path="res://sprites/persons/hort/hort_front.png" type="Texture" id=4]
-[ext_resource path="res://nodes/Enemy.gd" type="Script" id=5]
+[ext_resource path="res://nodes/enemy_nodes/Enemy.gd" type="Script" id=5]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -23,15 +23,16 @@ animations = [ {
 extents = Vector2( 13.4, 41.5 )
 
 [node name="Enemy" type="Area2D"]
+position = Vector2( -1, -4 )
 script = ExtResource( 5 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 882, 442 )
-scale = Vector2( 5, 4 )
+position = Vector2( -9.00003, 250 )
+scale = Vector2( 5, 5 )
 frames = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 889, 408 )
+position = Vector2( -4.00024, 226 )
 scale = Vector2( 5, 4 )
 shape = SubResource( 2 )
 

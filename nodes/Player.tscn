@@ -191,18 +191,18 @@ height = 0.0
 script = ExtResource( 9 )
 
 [node name="Hort" type="AnimatedSprite" parent="."]
-position = Vector2( 346, 500 )
+position = Vector2( -5, 181 )
 scale = Vector2( 3.69336, 3.69336 )
 frames = SubResource( 11 )
 animation = "attack"
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
-position = Vector2( 350, 556 )
+position = Vector2( 2, 237 )
 shape = SubResource( 1 )
 script = ExtResource( 10 )
 
 [node name="CameraPlayer" type="Camera2D" parent="."]
-position = Vector2( 353, 477 )
+position = Vector2( 10, 158 )
 current = true
 zoom = Vector2( 0.72, 0.72 )
 drag_margin_h_enabled = true
@@ -216,8 +216,9 @@ editor_draw_drag_margin = true
 script = ExtResource( 7 )
 
 [node name="AttackArea" parent="." instance=ExtResource( 8 )]
+position = Vector2( -343, -319 )
 
 [node name="Center" type="Node2D" parent="."]
-position = Vector2( 354, 476 )
+position = Vector2( 11, 157 )
 
 [connection signal="animation_finished" from="Hort" to="." method="_on_Hort_animation_finished"]
