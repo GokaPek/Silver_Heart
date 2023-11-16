@@ -135,27 +135,32 @@ position = Vector2( 295, 944 )
 scale = Vector2( 2.72754, 2.68934 )
 texture = ExtResource( 19 )
 
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource( 21 )]
+position = Vector2( 201, 252 )
+
 [node name="Xray" parent="." instance=ExtResource( 8 )]
 
 [node name="AnimatedSprite" parent="Xray/Eye_lvl0" index="0"]
 position = Vector2( 1892, 473 )
-frame = 2
+frame = 4
 
 [node name="AnimatedSprite2" parent="Xray/Eye_lvl0" index="1"]
 position = Vector2( -725, 589 )
-frame = 1
+frame = 3
 
 [node name="AnimatedSprite3" parent="Xray/Eye_lvl0" index="2"]
 position = Vector2( 711, 458 )
-frame = 0
+frame = 2
 
 [node name="AnimatedSprite4" parent="Xray/Eye_lvl0" index="3"]
 position = Vector2( 4628, 446 )
-frame = 0
+frame = 2
 
 [node name="AnimatedSprite5" parent="Xray/Eye_lvl0" index="4"]
 position = Vector2( 325, 381 )
-frame = 0
+frame = 2
 
 [node name="Esc_menue" parent="." instance=ExtResource( 2 )]
 
@@ -166,11 +171,6 @@ script = ExtResource( 13 )
 
 [node name="Quest_adder" type="Node2D" parent="."]
 script = ExtResource( 14 )
-
-[node name="Enemies" type="Node2D" parent="."]
-
-[node name="Enemy" parent="Enemies" instance=ExtResource( 21 )]
-position = Vector2( 201, 252 )
 
 [editable path="Player"]
 [editable path="Xray"]

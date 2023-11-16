@@ -221,4 +221,10 @@ position = Vector2( -343, -319 )
 [node name="Center" type="Node2D" parent="."]
 position = Vector2( 11, 157 )
 
+[node name="HpBar" type="ProgressBar" parent="."]
+margin_left = -169.0
+margin_top = -57.0
+margin_right = 178.0
+margin_bottom = -43.0
+
 [connection signal="animation_finished" from="Hort" to="." method="_on_Hort_animation_finished"]

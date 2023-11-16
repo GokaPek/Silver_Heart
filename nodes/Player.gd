@@ -4,11 +4,25 @@ const ACCELERATION = 500
 const MAX_SPEED = 200
 const AIR_RESISTENCE = 0.05
 
+var hp = 100
+onready var hp_bar = get_node("HpBar")
+
 var motion = Vector2.ZERO
 var idle = "idle_front"
 var isAttacking = false
 #переменнная если игрок двигался
 var isPlayerMoved = true
+
+
+#боевая система
+func hit(damage):
+	hp -= damage
+	hp_bar.value = hp
+	#if hp <= 0:
+	#	die()
+
+func die():
+	queue_free()  # Удаляет объект из игры
 
 #система передвижения
 func _physics_process(delta):
@@ -31,6 +45,7 @@ func _physics_process(delta):
 	if x_input == 0 and y_input == 0:
 		motion.x = 0
 		motion.y = 0
+
 
 
 #анимация
