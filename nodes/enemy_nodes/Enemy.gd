@@ -1,15 +1,19 @@
-extends Area2D
+extends KinematicBody2D
 
 var player
 var speed = 100
 var delta = 10
 var stop_distance = 200
 var hp = 100
+onready var hp_bar = get_node("HpBar")
 var damage = 10
 var timer
 var can_hit = true
 	
 func _ready():
+	add_to_group("Enemies")
+	hp_bar.value = hp
+	
 	player = get_parent().get_parent().get_player()
 	#animation_player = get_node("AnimationPlayer")  # Предполагается, что у вас есть узел AnimationPlayer с именем "AnimationPlayer"
 	
@@ -41,10 +45,11 @@ func _process(delta):
 func _on_Timer_timeout():
 	can_hit = true
 
-func hit(damage):
-	hp -= damage
-	#if hp <= 0:
-	#	die()
+func hit(damage_x):
+	hp -= damage_x
+	hp_bar.value = hp
+	if hp <= 0:
+		die()
 
 func die():
 	queue_free()  # Удаляет объект из игры
