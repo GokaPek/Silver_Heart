@@ -12,6 +12,8 @@ var idle = "idle_front"
 var isAttacking = false
 #переменнная если игрок двигался
 var isPlayerMoved = true
+#переменная боевого режима
+var isCombatMode = false
 
 func _ready():
 	hp_bar.value = hp
@@ -112,7 +114,7 @@ func _on_Hort_animation_finished():
 				if body.is_in_group("Enemies"):
 					body.hit(20)  # например, наносим 10 урона
 
-#загрузка статистики		
+#загрузка статистики
 var stats = ConfigFile.new()
 var err = stats.load("user://stats.cfg")
 
@@ -188,3 +190,6 @@ func set_bool(name, boolean):
 		bool_var[name] = boolean
 #деньги
 var money = stats.get_value("Player", "money")
+#Проверка на наличие противников рядом
+func isEnemyHere():
+	return true;
