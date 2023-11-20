@@ -5,8 +5,6 @@ extends Node2D
 func _ready():
 	pass 
 
-
-
 var esc_menue_bool = false
 func _input(event):
 	if (event.is_action_pressed("ui_cancel") or ($Interface/Button.pressed)):
