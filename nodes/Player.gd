@@ -9,11 +9,21 @@ onready var hp_bar = get_node("CameraPlayer/HpBar")
 
 var motion = Vector2.ZERO
 var idle = "idle_front"
+#переменная ускорения от рывка
+var dash_speed = 1
+#перменная если игрок атаковал
 var isAttacking = false
 #переменнная если игрок двигался
 var isPlayerMoved = true
 #переменная боевого режима
 var isCombatMode = false
+# Переменная для хранения времени последнего рывка
+var last_dash_time = 0
+# Константа для временного интервала между рывками
+const DASH_COOLDOWN = 0.25
+# Константа для скорости рывка
+const DASH_SPEED = 5000
+
 
 func _ready():
 	hp_bar.value = hp
@@ -30,33 +40,47 @@ func die():
 
 #система передвижения
 func _physics_process(delta):
-	#print(bool_var)
 	#обработка события нажатия клавишь
 	var x_input = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	var y_input = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-	if x_input != 0 && isAttacking == false:
-		isPlayerMoved = true
-		motion.x += x_input * ACCELERATION * delta
-		motion.x = clamp(motion.x, -MAX_SPEED, MAX_SPEED)
-	if y_input != 0 && isAttacking == false:
-		isPlayerMoved = true
-		motion.y += y_input * ACCELERATION * delta
-		motion.y = clamp(motion.y, -MAX_SPEED, MAX_SPEED)
+	
+	if Input.is_action_just_pressed("dash") and isCombatMode and (Time.get_ticks_msec() - last_dash_time >= DASH_COOLDOWN * 1000):
+		last_dash_time = Time.get_ticks_msec()
+		if x_input != 0 && isAttacking == false:
+			isPlayerMoved = true
+			motion.x += x_input * ACCELERATION * delta * DASH_SPEED
+			motion.x = clamp(motion.x, -MAX_SPEED - DASH_SPEED, MAX_SPEED + DASH_SPEED)
+		if y_input != 0 && isAttacking == false:
+			isPlayerMoved = true
+			motion.y += y_input * ACCELERATION * delta * DASH_SPEED
+			motion.y = clamp(motion.y, -MAX_SPEED - DASH_SPEED, MAX_SPEED + DASH_SPEED)
+	else:
+		if x_input != 0 && isAttacking == false:
+			isPlayerMoved = true
+			motion.x += x_input * ACCELERATION * delta
+			motion.x = clamp(motion.x, -MAX_SPEED, MAX_SPEED)
+		if y_input != 0 && isAttacking == false:
+			isPlayerMoved = true
+			motion.y += y_input * ACCELERATION * delta
+			motion.y = clamp(motion.y, -MAX_SPEED, MAX_SPEED)
 	motion = move_and_slide(motion, Vector2.UP)
+	#if Input.is_action_just_pressed("dash") and isCombatMode:
+	#	dash()
+	
 	#остановка со временем
 	motion.x = lerp(motion.x, 0, AIR_RESISTENCE)
 	motion.y = lerp(motion.y, 0, AIR_RESISTENCE)
 	if x_input == 0 and y_input == 0:
 		motion.x = 0
 		motion.y = 0
-
-
-
+	
+	
 #анимация
 
 
 	var anim = "idle_front"
 	if isAttacking == false:
+		
 		if y_input > 0:
 			anim = "walk_front"
 			idle = "idle_front"
@@ -73,8 +97,11 @@ func _physics_process(delta):
 			anim = "walk_left"
 			idle = "idle_left"
 			$Hort.play(anim)
-
-	if Input.is_action_just_pressed("attack"):
+	#бой
+	if Input.is_action_just_pressed("attack") and isCombatMode:
+		
+		$CameraPlayer/HpBar.visible = true
+		
 		if (idle == "idle_right"):
 			$Hort.play("attack_right");
 			$AttackArea/AttackRight.disabled = false;
@@ -113,6 +140,20 @@ func _on_Hort_animation_finished():
 				# если объект является врагом, наносим ему урон
 				if body.is_in_group("Enemies"):
 					body.hit(20)  # например, наносим 10 урона
+					
+#выход из боевого режима
+func stopCombat():
+	isCombatMode = false
+	$CameraPlayer/HpBar.visible = false
+
+# Функция для рывка
+#func dash():
+#	if Time.get_ticks_msec() - last_dash_time >= DASH_COOLDOWN * 1000:
+#		last_dash_time = Time.get_ticks_msec()
+#		var direction = motion.normalized()
+#		motion = direction * DASH_SPEED
+
+
 
 #загрузка статистики
 var stats = ConfigFile.new()

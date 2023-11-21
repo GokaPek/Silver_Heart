@@ -299,6 +299,7 @@ editor_draw_drag_margin = true
 script = ExtResource( 7 )
 
 [node name="HpBar" type="ProgressBar" parent="CameraPlayer"]
+visible = false
 margin_left = -184.0
 margin_top = 144.0
 margin_right = 163.0

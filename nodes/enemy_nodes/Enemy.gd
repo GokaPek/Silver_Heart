@@ -11,10 +11,12 @@ var timer
 var can_hit = true
 	
 func _ready():
+	player = get_parent().get_parent().get_player()
 	add_to_group("Enemies")
+	player.isCombatMode = true
 	hp_bar.value = hp
 	
-	player = get_parent().get_parent().get_player()
+	
 	#animation_player = get_node("AnimationPlayer")  # Предполагается, что у вас есть узел AnimationPlayer с именем "AnimationPlayer"
 	
 	timer = Timer.new()
@@ -49,6 +51,7 @@ func hit(damage_x):
 	hp -= damage_x
 	hp_bar.value = hp
 	if hp <= 0:
+		player.stopCombat()
 		die()
 
 func die():
