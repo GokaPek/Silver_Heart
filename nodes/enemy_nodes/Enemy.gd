@@ -5,6 +5,8 @@ var animation
 var speed = 100
 var delta = 10
 var stop_distance = 200
+#отталкивание
+var swap = 10
 var hp = 100
 onready var hp_bar = get_node("HpBar")
 var damage = 10
@@ -67,6 +69,11 @@ func _on_Animation_finished():
 		player.hit(damage)
 		can_hit = false
 		timer.start()  # Перезапускаем таймер
+		
+		# Отталкиваем игрока от врага
+		var direction = (player.position - position).normalized()
+		player.position += direction * delta * swap
+		
 
 func hit(damage_x):
 	hp -= damage_x
@@ -74,6 +81,10 @@ func hit(damage_x):
 	if hp <= 0:
 		player.stopCombat()
 		die()
-
+	else:
+		# Отталкиваем врага от игрока
+		var direction = (position - player.position).normalized()
+		position += direction * delta * swap
+	
 func die():
 	queue_free()  # Удаляет объект из игры
