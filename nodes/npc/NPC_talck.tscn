@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://nodes/npc/NPC_talck.gd" type="Script" id=1]
+[ext_resource path="res://sprites/persons/hort/hort_left.png" type="Texture" id=2]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 88.0
+height = 134.0
+
+[node name="NPC_talck" type="Area2D"]
+script = ExtResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+pause_mode = 2
+position = Vector2( -17.2499, -15.2499 )
+scale = Vector2( 3.48047, 3.48047 )
+frames = SubResource( 1 )
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1.49992, 1.00006 )
+shape = SubResource( 2 )
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = -96.4999
+margin_top = -131.0
+margin_right = 89.5001
+margin_bottom = 138.0

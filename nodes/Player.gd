@@ -143,8 +143,10 @@ func _on_Hort_animation_finished():
 					
 #выход из боевого режима
 func stopCombat():
-	isCombatMode = false
-	$CameraPlayer/HpBar.visible = false
+	var bodies = get_tree().get_nodes_in_group("Enemies")
+	if bodies.size() == 1:
+		isCombatMode = false
+		$CameraPlayer/HpBar.visible = false
 
 # Функция для рывка
 #func dash():
