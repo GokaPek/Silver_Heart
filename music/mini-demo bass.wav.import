@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/mini-demo bass.wav-96115c51d6b015ad35dbb7dbba8f502e.sample"
+type="AudioStreamWAV"
+uid="uid://bmmtygqasouqx"
+path="res://.godot/imported/mini-demo bass.wav-96115c51d6b015ad35dbb7dbba8f502e.sample"
 
 [deps]
 
 source_file="res://music/mini-demo bass.wav"
-dest_files=[ "res://.import/mini-demo bass.wav-96115c51d6b015ad35dbb7dbba8f502e.sample" ]
+dest_files=["res://.godot/imported/mini-demo bass.wav-96115c51d6b015ad35dbb7dbba8f502e.sample"]
 
 [params]
 
