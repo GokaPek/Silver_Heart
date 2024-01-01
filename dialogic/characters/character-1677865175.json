@@ -1,15 +1,15 @@
 {
 	"color": "#fff5ae07",
 	"description": "",
-	"display_name": "Планшет",
+	"display_name": "Галопланшет",
 	"display_name_bool": true,
 	"id": "character-1677865175.json",
 	"mirror_portraits": false,
 	"name": "PDA.json",
 	"nickname": "",
 	"nickname_bool": false,
-	"offset_x": -370,
-	"offset_y": -150,
+	"offset_x": -300,
+	"offset_y": -240,
 	"portraits": [
 		{
 			"name": "Default",

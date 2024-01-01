@@ -2,14 +2,13 @@
 
 importer="csv_translation"
 type="Translation"
-uid="uid://crn1vxmj2pobj"
 
 [deps]
 
-files=["res://addons/dialogic/Localization/dialogic.zh_CN.translation", "res://addons/dialogic/Localization/dialogic.en.translation", "res://addons/dialogic/Localization/dialogic.es.translation", "res://addons/dialogic/Localization/dialogic.fr.translation", "res://addons/dialogic/Localization/dialogic.de.translation"]
+files=[ "res://addons/dialogic/Localization/dialogic.zh_CN.translation", "res://addons/dialogic/Localization/dialogic.en.translation", "res://addons/dialogic/Localization/dialogic.es.translation", "res://addons/dialogic/Localization/dialogic.fr.translation", "res://addons/dialogic/Localization/dialogic.de.translation" ]
 
 source_file="res://addons/dialogic/Localization/dialogic.csv"
-dest_files=["res://addons/dialogic/Localization/dialogic.zh_CN.translation", "res://addons/dialogic/Localization/dialogic.en.translation", "res://addons/dialogic/Localization/dialogic.es.translation", "res://addons/dialogic/Localization/dialogic.fr.translation", "res://addons/dialogic/Localization/dialogic.de.translation"]
+dest_files=[ "res://addons/dialogic/Localization/dialogic.zh_CN.translation", "res://addons/dialogic/Localization/dialogic.en.translation", "res://addons/dialogic/Localization/dialogic.es.translation", "res://addons/dialogic/Localization/dialogic.fr.translation", "res://addons/dialogic/Localization/dialogic.de.translation" ]
 
 [params]
 

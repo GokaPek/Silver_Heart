@@ -2,18 +2,14 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-uid="uid://756fwow2olto"
-path="res://.godot/imported/bit_fight.mp3-a466d7366509614de5f651b88d9a3fad.mp3str"
+path="res://.import/bit_fight.mp3-a466d7366509614de5f651b88d9a3fad.mp3str"
 
 [deps]
 
 source_file="res://music/bit_fight.mp3"
-dest_files=["res://.godot/imported/bit_fight.mp3-a466d7366509614de5f651b88d9a3fad.mp3str"]
+dest_files=[ "res://.import/bit_fight.mp3-a466d7366509614de5f651b88d9a3fad.mp3str" ]
 
 [params]
 
 loop=true
 loop_offset=0
-bpm=0
-beat_count=0
-bar_beats=4

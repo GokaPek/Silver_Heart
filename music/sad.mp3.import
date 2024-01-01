@@ -2,18 +2,14 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-uid="uid://bwoqx15mvawi1"
-path="res://.godot/imported/sad.mp3-05a9a63ec4f2210c525d627213b1b81c.mp3str"
+path="res://.import/sad.mp3-05a9a63ec4f2210c525d627213b1b81c.mp3str"
 
 [deps]
 
 source_file="res://music/sad.mp3"
-dest_files=["res://.godot/imported/sad.mp3-05a9a63ec4f2210c525d627213b1b81c.mp3str"]
+dest_files=[ "res://.import/sad.mp3-05a9a63ec4f2210c525d627213b1b81c.mp3str" ]
 
 [params]
 
 loop=true
 loop_offset=0
-bpm=0
-beat_count=0
-bar_beats=4

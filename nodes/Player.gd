@@ -4,39 +4,83 @@ const ACCELERATION = 500
 const MAX_SPEED = 200
 const AIR_RESISTENCE = 0.05
 
+var hp = 100
+onready var hp_bar = get_node("CameraPlayer/HpBar")
+
 var motion = Vector2.ZERO
 var idle = "idle_front"
+#переменная ускорения от рывка
+var dash_speed = 1
+#перменная если игрок атаковал
 var isAttacking = false
 #переменнная если игрок двигался
 var isPlayerMoved = true
+#переменная боевого режима
+var isCombatMode = false
+# Переменная для хранения времени последнего рывка
+var last_dash_time = 0
+# Константа для временного интервала между рывками
+const DASH_COOLDOWN = 0.25
+# Константа для скорости рывка
+const DASH_SPEED = 5000
+
+
+func _ready():
+	hp_bar.value = hp
+
+#боевая система
+func hit(damage):
+	hp -= damage
+	hp_bar.value = hp
+	#if hp <= 0:
+	#	die()
+
+func die():
+	queue_free()  # Удаляет объект из игры
 
 #система передвижения
 func _physics_process(delta):
 	#обработка события нажатия клавишь
 	var x_input = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	var y_input = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-	if x_input != 0 && isAttacking == false:
-		isPlayerMoved = true
-		motion.x += x_input * ACCELERATION * delta
-		motion.x = clamp(motion.x, -MAX_SPEED, MAX_SPEED)
-	if y_input != 0 && isAttacking == false:
-		isPlayerMoved = true
-		motion.y += y_input * ACCELERATION * delta
-		motion.y = clamp(motion.y, -MAX_SPEED, MAX_SPEED)
+	
+	if Input.is_action_just_pressed("dash") and isCombatMode and (Time.get_ticks_msec() - last_dash_time >= DASH_COOLDOWN * 1000):
+		last_dash_time = Time.get_ticks_msec()
+		if x_input != 0 && isAttacking == false:
+			isPlayerMoved = true
+			motion.x += x_input * ACCELERATION * delta * DASH_SPEED
+			motion.x = clamp(motion.x, -MAX_SPEED - DASH_SPEED, MAX_SPEED + DASH_SPEED)
+		if y_input != 0 && isAttacking == false:
+			isPlayerMoved = true
+			motion.y += y_input * ACCELERATION * delta * DASH_SPEED
+			motion.y = clamp(motion.y, -MAX_SPEED - DASH_SPEED, MAX_SPEED + DASH_SPEED)
+	else:
+		if x_input != 0 && isAttacking == false:
+			isPlayerMoved = true
+			motion.x += x_input * ACCELERATION * delta
+			motion.x = clamp(motion.x, -MAX_SPEED, MAX_SPEED)
+		if y_input != 0 && isAttacking == false:
+			isPlayerMoved = true
+			motion.y += y_input * ACCELERATION * delta
+			motion.y = clamp(motion.y, -MAX_SPEED, MAX_SPEED)
 	motion = move_and_slide(motion, Vector2.UP)
+	#if Input.is_action_just_pressed("dash") and isCombatMode:
+	#	dash()
+	
 	#остановка со временем
 	motion.x = lerp(motion.x, 0, AIR_RESISTENCE)
 	motion.y = lerp(motion.y, 0, AIR_RESISTENCE)
 	if x_input == 0 and y_input == 0:
 		motion.x = 0
 		motion.y = 0
-
-
+	
+	
 #анимация
 
 
 	var anim = "idle_front"
 	if isAttacking == false:
+		
 		if y_input > 0:
 			anim = "walk_front"
 			idle = "idle_front"
@@ -53,62 +97,78 @@ func _physics_process(delta):
 			anim = "walk_left"
 			idle = "idle_left"
 			$Hort.play(anim)
-
-	if Input.is_action_just_pressed("attack_start"):
-#		if (idle == "idle_right"):
-#			$Hort.play("attack");
-#			$AttackArea/AttackRight.disabled = false;
-#			isAttacking = true;
-#		if (idle == "idle_left"):
-#			$Hort.play("attack");
-#			$AttackArea/AttackLeft.disabled = false;
-#			isAttacking = true;
-#		if (idle == "idle_back"):
-#			$Hort.play("attack");
-#			$AttackArea/AttackUp.disabled = false;
-#			isAttacking = true;
-#		if (idle == "idle_front"):
-#			$Hort.play("attack");
-#			$AttackArea/AttackDown.disabled = false;
-#			isAttacking = true;
-		$Hort.play("attack_start")
-		$AttackArea/AttackRight.disabled = false
-		isAttacking = true
-	if Input.is_action_just_pressed("attack_up"):
-		$Hort.play("blade_up")
-		$AttackArea/AttackRight.disabled = false
-		isAttacking = true
+	#бой
+	if Input.is_action_just_pressed("attack") and isCombatMode:
+		
+		$CameraPlayer/HpBar.visible = true
+		
+		if (idle == "idle_right"):
+			$Hort.play("attack_right");
+			$AttackArea/AttackRight.disabled = false;
+			isAttacking = true;
+		if (idle == "idle_left"):
+			$Hort.play("attack_left");
+			$AttackArea/AttackLeft.disabled = false;
+			isAttacking = true;
+		if (idle == "idle_back"):
+			$Hort.play("attack_left");
+			$AttackArea/AttackUp.disabled = false;
+			isAttacking = true;
+		if (idle == "idle_front"):
+			$Hort.play("attack_right");
+			$AttackArea/AttackDown.disabled = false;
+			isAttacking = true;
 
 
-	if Input.is_action_just_pressed("attack_down"):
-		$Hort.play("blade_down")
-		$AttackArea/AttackRight.disabled = false
-		isAttacking = true
-	if Input.is_action_just_pressed("attack_finish"):
-		$Hort.play("attack_finish",true)
-		$AttackArea/AttackRight.disabled = false
-		isAttacking = true
 	if ((x_input == 0 ) and (y_input == 0 )) and isAttacking == false:
 		anim=idle
 		$Hort.play(anim)
+
+
 #конец проигрывания анимации атаки
 func _on_Hort_animation_finished():
-	if $Hort.animation == "attack_finish":
+	if $Hort.animation == "attack_right" or $Hort.animation == "attack_left":
 		$AttackArea/AttackRight.disabled = true;
 		$AttackArea/AttackLeft.disabled = true;
 		$AttackArea/AttackUp.disabled = true;
 		$AttackArea/AttackDown.disabled = true;
 		isAttacking = false;
-#хз как должно быть, но пока шо работает так: мы вытаскиваем с помощью blade_up клинок и махаемся им. И пока он у нас в руках, двигаться мы, як я разумею, не можэ. И как только мы запихиваем сей клинок обратно, двигаться могем. Чет муторно как-то, но шо естьб
+		# получаем все объекты, которые пересекаются с attackArea
+		var bodies = get_tree().get_nodes_in_group("Enemies").duplicate()
+		for body in bodies:
+			if $AttackArea.get_overlapping_bodies().has(body):
+				# если объект является врагом, наносим ему урон
+				if body.is_in_group("Enemies"):
+					body.hit(20)  # например, наносим 10 урона
+					
+#выход из боевого режима
+func stopCombat():
+	var bodies = get_tree().get_nodes_in_group("Enemies")
+	if bodies.size() == 1:
+		isCombatMode = false
+		$CameraPlayer/HpBar.visible = false
+
+# Функция для рывка
+#func dash():
+#	if Time.get_ticks_msec() - last_dash_time >= DASH_COOLDOWN * 1000:
+#		last_dash_time = Time.get_ticks_msec()
+#		var direction = motion.normalized()
+#		motion = direction * DASH_SPEED
+
+
+
+#загрузка статистики
+var stats = ConfigFile.new()
+var err = stats.load("user://stats.cfg")
 
 #задел на характеристики персонажа
 
-var vision_lvl = 0
+var vision_lvl = stats.get_value("Player", "vision_lvl")
 
 #система предметов
-var inventory = {}
+var inventory = stats.get_value("Player", "inventory")
 func pick(item):
-	var it = item.get_name()
+	var it = item.get_name() 
 	#print("Get %s" % str(it))
 	if it in inventory.keys():
 		inventory[it] += item.get_amount() 
@@ -117,9 +177,9 @@ func pick(item):
 		
 
 #система глоссария
-var gloss = {}
-var gloss_persons = {}
-var gloss_world = {}
+var gloss = stats.get_value("Player", "gloss")
+var gloss_persons = stats.get_value("Player", "gloss_persons")
+var gloss_world = stats.get_value("Player", "gloss_world")
 func get_gloss(name, inf):
 	if name in gloss.keys():
 		 return;
@@ -138,8 +198,8 @@ func get_gloss_world(name, inf):
 		
 
 #система квестов
-var quests = {}
-var complited_quests = {}
+var quests = stats.get_value("Player", "quests")
+var complited_quests = stats.get_value("Player", "complited_quests")
 func get_quest(name):
 	if name in quests.keys():
 		 return;
@@ -164,5 +224,15 @@ func do_quest_mission(name, name_quest):
 			quests[name][name_quest]=true
 			
 			
+#логические переменные
+var bool_var = stats.get_value("Player", "bool_var")
+func set_bool(name, boolean):
+	if name in bool_var.keys():
+		 return;
+	else:
+		bool_var[name] = boolean
 #деньги
-var money = 0
+var money = stats.get_value("Player", "money")
+#Проверка на наличие противников рядом
+func isEnemyHere():
+	return true;
