@@ -1,5 +1,7 @@
 extends Control
 
+
+#1920\1080
 func _on_Button_pressed():
 	var stats = ConfigFile.new()
 	#задел на характеристики персонажа

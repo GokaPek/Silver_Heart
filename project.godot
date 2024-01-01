@@ -81,13 +81,15 @@ _global_script_class_icons={
 [application]
 
 config/name="Silver_Heart"
-run/main_scene="res://nodes/MainMenue.tscn"
+run/main_scene="res://folder_for_combat/main_test_combat.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+GlobalForCombat="*res://folder_for_combat/Global_for_combat.gd"
 
 [display]
 
-window/size/width=1920
-window/size/height=1080
 window/size/fullscreen=true
 
 [editor_plugins]
@@ -149,6 +151,7 @@ back_i_click={
 attack={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":74,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 dash={
