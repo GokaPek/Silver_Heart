@@ -4,7 +4,7 @@ var current_list_of_animations = []
 export(int) var index_current_animation = -1
 var anim_machine 
 
-
+#bababoy
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
