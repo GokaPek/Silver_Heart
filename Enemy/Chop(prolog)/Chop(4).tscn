@@ -1,0 +1,104 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://Enemy/Chop(prolog)/Chop.gd" type="Script" id=1]
+[ext_resource path="res://Enemy/Chop(prolog)/Parirovanie/chopparirovanie1.png" type="Texture" id=2]
+[ext_resource path="res://Enemy/Chop(prolog)/Parirovanie/chopparirovanie3.png" type="Texture" id=3]
+[ext_resource path="res://Enemy/Chop(prolog)/Run/choprun1.png" type="Texture" id=4]
+[ext_resource path="res://Enemy/Chop(prolog)/Block/chopblok1.png" type="Texture" id=5]
+[ext_resource path="res://Enemy/Chop(prolog)/Bonk/chopbonk1.png" type="Texture" id=6]
+[ext_resource path="res://Enemy/Chop(prolog)/Run/choprun3.png" type="Texture" id=7]
+[ext_resource path="res://Enemy/Chop(prolog)/Run/choprun4.png" type="Texture" id=8]
+[ext_resource path="res://Enemy/Chop(prolog)/Parirovanie/chopparirovanie2.png" type="Texture" id=9]
+[ext_resource path="res://Enemy/Chop(prolog)/Run/choprun2.png" type="Texture" id=10]
+[ext_resource path="res://Enemy/Chop(prolog)/Bonk/chopbonk2.png" type="Texture" id=11]
+[ext_resource path="res://Enemy/Chop(prolog)/Block/chopblok3.png" type="Texture" id=12]
+[ext_resource path="res://Enemy/Chop(prolog)/Bonk/chopbonk3.png" type="Texture" id=13]
+[ext_resource path="res://Enemy/Chop(prolog)/Bonk/chopbonk4.png" type="Texture" id=14]
+[ext_resource path="res://Enemy/Chop(prolog)/Bonk/chopbonk5.png" type="Texture" id=15]
+[ext_resource path="res://Enemy/Chop(prolog)/Parirovanie/chopparirovanie4.png" type="Texture" id=16]
+[ext_resource path="res://Enemy/Chop(prolog)/Run/choprun5.png" type="Texture" id=17]
+[ext_resource path="res://Enemy/Chop(prolog)/Run/choprun6.png" type="Texture" id=18]
+[ext_resource path="res://Enemy/Chop(prolog)/Ukol/chopukol (1)3.png" type="Texture" id=19]
+[ext_resource path="res://Enemy/Chop(prolog)/Ukol/chopukol (1)5.png" type="Texture" id=20]
+[ext_resource path="res://Enemy/Chop(prolog)/Ukol/chopukol (1)2.png" type="Texture" id=21]
+[ext_resource path="res://Enemy/Chop(prolog)/Ukol/chopukol (1)4.png" type="Texture" id=22]
+[ext_resource path="res://Enemy/Chop(prolog)/Block/chopblok2.png" type="Texture" id=23]
+[ext_resource path="res://Enemy/Chop(prolog)/Ukol/chopukol (1)1.png" type="Texture" id=24]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 3.85742, 7.88412 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 512, 256 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 11 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "Bonk",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 24 ), ExtResource( 21 ), ExtResource( 19 ), ExtResource( 22 ), ExtResource( 20 ) ],
+"loop": true,
+"name": "Ukol",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 23 ) ],
+"loop": false,
+"name": "Block",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 9 ), ExtResource( 3 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "Parirovanie",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 10 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 17 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "Run",
+"speed": 10.0
+} ]
+
+[node name="bad guy" type="KinematicBody2D"]
+collision_layer = 4
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="eye" type="Area2D" parent="."]
+visible = false
+position = Vector2( 0, -64 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="eye"]
+position = Vector2( 480, -128 )
+shape = SubResource( 2 )
+
+[node name="outofrange" type="Timer" parent="."]
+one_shot = true
+
+[node name="sight" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 0 )
+collision_mask = 3
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+visible = false
+position = Vector2( 2.67029e-05, -1.52588e-05 )
+scale = Vector2( 47.7479, 37.7154 )
+
+[node name="idletimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Chop" type="AnimatedSprite" parent="."]
+frames = SubResource( 3 )
+animation = "Idle"
+[connection signal="timeout" from="outofrange" to="." method="_on_outofrange_timeout"]
+[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="timeout" from="idletimer" to="." method="_on_idletimer_timeout"]
