@@ -1,4 +1,4 @@
-[gd_scene load_steps=132 format=2]
+[gd_scene load_steps=138 format=2]
 
 [ext_resource path="res://folder_for_combat/player.gd" type="Script" id=1]
 [ext_resource path="res://folder_for_combat/kyoko/idle_dflt/idle2.png" type="Texture" id=2]
@@ -87,6 +87,9 @@
 [ext_resource path="res://folder_for_combat/kyoko/heavy_flipkick/RCG_AttackHeavy_FlipKick_08.png" type="Texture" id=85]
 [ext_resource path="res://folder_for_combat/kyoko/heavy_flipkick/RCG_AttackHeavy_FlipKick_06.png" type="Texture" id=86]
 
+[sub_resource type="RectangleShape2D" id=58]
+extents = Vector2( 19.1689, 18.3856 )
+
 [sub_resource type="AnimationNodeAnimation" id=7]
 animation = "attack_1"
 
@@ -107,6 +110,9 @@ animation = "from_atack_2_to_deflt"
 
 [sub_resource type="AnimationNodeAnimation" id=29]
 animation = "from_atack_3_to_deflt"
+
+[sub_resource type="AnimationNodeAnimation" id=61]
+animation = "get_hit"
 
 [sub_resource type="AnimationNodeAnimation" id=41]
 animation = "heavy_flipkick"
@@ -175,6 +181,12 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=57]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=62]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=63]
+switch_mode = 2
+auto_advance = true
+
 [sub_resource type="AnimationNodeStateMachine" id=17]
 states/attack_1/node = SubResource( 7 )
 states/attack_1/position = Vector2( 457, 146 )
@@ -190,6 +202,8 @@ states/from_atack_2_to_deflt/node = SubResource( 28 )
 states/from_atack_2_to_deflt/position = Vector2( 338, 436 )
 states/from_atack_3_to_deflt/node = SubResource( 29 )
 states/from_atack_3_to_deflt/position = Vector2( 134, 552 )
+states/get_hit/node = SubResource( 61 )
+states/get_hit/position = Vector2( 575, 28 )
 states/heavy_flipkick/node = SubResource( 41 )
 states/heavy_flipkick/position = Vector2( 141, -120 )
 states/heavy_spinkick/node = SubResource( 42 )
@@ -198,7 +212,7 @@ states/run/node = SubResource( 43 )
 states/run/position = Vector2( -50, 146 )
 states/walk/node = SubResource( 44 )
 states/walk/position = Vector2( 103, 146 )
-transitions = [ "dflt", "attack_1", SubResource( 11 ), "attack_1", "from_atack_1_to_deflt", SubResource( 13 ), "from_atack_1_to_deflt", "dflt", SubResource( 15 ), "attack_1", "attack_2", SubResource( 30 ), "attack_2", "attack_3", SubResource( 31 ), "attack_2", "from_atack_2_to_deflt", SubResource( 32 ), "attack_3", "from_atack_3_to_deflt", SubResource( 33 ), "from_atack_2_to_deflt", "dflt", SubResource( 34 ), "from_atack_3_to_deflt", "dflt", SubResource( 35 ), "dflt", "walk", SubResource( 45 ), "walk", "run", SubResource( 46 ), "run", "walk", SubResource( 47 ), "walk", "dflt", SubResource( 48 ), "walk", "heavy_flipkick", SubResource( 50 ), "dflt", "heavy_flipkick", SubResource( 52 ), "heavy_flipkick", "walk", SubResource( 54 ), "heavy_spinkick", "dflt", SubResource( 55 ), "heavy_flipkick", "dflt", SubResource( 56 ), "run", "heavy_spinkick", SubResource( 57 ) ]
+transitions = [ "dflt", "attack_1", SubResource( 11 ), "attack_1", "from_atack_1_to_deflt", SubResource( 13 ), "from_atack_1_to_deflt", "dflt", SubResource( 15 ), "attack_1", "attack_2", SubResource( 30 ), "attack_2", "attack_3", SubResource( 31 ), "attack_2", "from_atack_2_to_deflt", SubResource( 32 ), "attack_3", "from_atack_3_to_deflt", SubResource( 33 ), "from_atack_2_to_deflt", "dflt", SubResource( 34 ), "from_atack_3_to_deflt", "dflt", SubResource( 35 ), "dflt", "walk", SubResource( 45 ), "walk", "run", SubResource( 46 ), "run", "walk", SubResource( 47 ), "walk", "dflt", SubResource( 48 ), "walk", "heavy_flipkick", SubResource( 50 ), "dflt", "heavy_flipkick", SubResource( 52 ), "heavy_flipkick", "walk", SubResource( 54 ), "heavy_spinkick", "dflt", SubResource( 55 ), "heavy_flipkick", "dflt", SubResource( 56 ), "run", "heavy_spinkick", SubResource( 57 ), "dflt", "get_hit", SubResource( 62 ), "get_hit", "dflt", SubResource( 63 ) ]
 start_node = "dflt"
 graph_offset = Vector2( -205, -177 )
 
@@ -219,7 +233,7 @@ tracks/0/keys = {
 "values": [ -1 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("anim_sprite:animation")
+tracks/1/path = NodePath("things_for_flip/anim_sprite:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -231,7 +245,7 @@ tracks/1/keys = {
 "values": [ "attack_3" ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("anim_sprite:frame")
+tracks/2/path = NodePath("things_for_flip/anim_sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -254,11 +268,95 @@ tracks/3/keys = {
 "update": 0,
 "values": [ true ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("things_for_flip/player_light_attack_hit_box/CollisionShape2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 33, 20.5 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("things_for_flip/player_light_attack_hit_box/CollisionShape2D:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("things_for_flip/player_light_attack_hit_box/CollisionShape2D:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("things_for_flip/player_light_attack_hit_box/CollisionShape2D:disabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("things_for_flip/player_light_attack_hit_box/CollisionShape2D:shape:extents")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 19.1689, 18.3856 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Label:text")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ "" ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath(".:get_hit_at_moment")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "attack_1"
 length = 0.45
-step = 0.15
+step = 0.03
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -274,7 +372,7 @@ tracks/0/keys = {
 } ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("anim_sprite:animation")
+tracks/1/path = NodePath("things_for_flip/anim_sprite:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -286,7 +384,7 @@ tracks/1/keys = {
 "values": [ "attack_1" ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("anim_sprite:frame")
+tracks/2/path = NodePath("things_for_flip/anim_sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -309,6 +407,54 @@ tracks/3/keys = {
 "update": 1,
 "values": [ false ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("things_for_flip/player_light_attack_hit_box/CollisionShape2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.18, 0.33 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 25, 19 ), Vector2( 27, 21 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("things_for_flip/player_light_attack_hit_box/CollisionShape2D:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.18, 0.33 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("things_for_flip/player_light_attack_hit_box/CollisionShape2D:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.06, 0.18, 0.33, 0.36 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, true, false, false, true ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("things_for_flip/player_light_attack_hit_box/CollisionShape2D:shape:extents")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.18 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 19.1689, 4.5 ) ]
+}
 
 [sub_resource type="Animation" id=4]
 resource_name = "attack_2"
@@ -329,7 +475,7 @@ tracks/0/keys = {
 } ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("anim_sprite:animation")
+tracks/1/path = NodePath("things_for_flip/anim_sprite:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -341,7 +487,7 @@ tracks/1/keys = {
 "values": [ "attack_2" ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("anim_sprite:frame")
+tracks/2/path = NodePath("things_for_flip/anim_sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -363,6 +509,54 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("things_for_flip/player_light_attack_hit_box/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.05, 0.16, 0.24, 0.32 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, false, true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("things_for_flip/player_light_attack_hit_box/CollisionShape2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.16, 0.24 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 38.937, 31.9415 ), Vector2( 35, 19 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("things_for_flip/player_light_attack_hit_box/CollisionShape2D:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.16, 0.24 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 36.4, -29.1 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("things_for_flip/player_light_attack_hit_box/CollisionShape2D:shape:extents")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.16, 0.24 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 19.1689, 18.3856 ), Vector2( 19.1689, 4.8552 ) ]
 }
 
 [sub_resource type="Animation" id=24]
@@ -384,7 +578,7 @@ tracks/0/keys = {
 } ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("anim_sprite:animation")
+tracks/1/path = NodePath("things_for_flip/anim_sprite:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -396,7 +590,7 @@ tracks/1/keys = {
 "values": [ "attack_3" ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("anim_sprite:frame")
+tracks/2/path = NodePath("things_for_flip/anim_sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -419,6 +613,54 @@ tracks/3/keys = {
 "update": 1,
 "values": [ false ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("things_for_flip/player_light_attack_hit_box/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.08, 0.24, 0.32, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, false, true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("things_for_flip/player_light_attack_hit_box/CollisionShape2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.24, 0.32 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 38.3727, 7.97546 ), Vector2( 38.7465, 37.243 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("things_for_flip/player_light_attack_hit_box/CollisionShape2D:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.24, 0.32 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -20.9125, 44.6 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("things_for_flip/player_light_attack_hit_box/CollisionShape2D:shape:extents")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.24, 0.32 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 19.1689, 18.2686 ), Vector2( 19.1689, 5.99792 ) ]
+}
 
 [sub_resource type="Animation" id=19]
 resource_name = "dflt"
@@ -437,7 +679,7 @@ tracks/0/keys = {
 "values": [ -1 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("anim_sprite:animation")
+tracks/1/path = NodePath("things_for_flip/anim_sprite:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -449,7 +691,7 @@ tracks/1/keys = {
 "values": [ "idle" ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("anim_sprite:frame")
+tracks/2/path = NodePath("things_for_flip/anim_sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -509,12 +751,51 @@ tracks/0/keys = {
 "values": [ true ]
 }
 
+[sub_resource type="Animation" id=60]
+resource_name = "get_hit"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:can_movement")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "ooomagaad", "" ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:get_hit_at_moment")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
 [sub_resource type="Animation" id=39]
 resource_name = "heavy_flipkick"
 length = 1.04
 step = 0.08
 tracks/0/type = "value"
-tracks/0/path = NodePath("anim_sprite:animation")
+tracks/0/path = NodePath("things_for_flip/anim_sprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -526,7 +807,7 @@ tracks/0/keys = {
 "values": [ "heavy_flipkick" ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("anim_sprite:frame")
+tracks/1/path = NodePath("things_for_flip/anim_sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -555,7 +836,7 @@ resource_name = "heavy_spinkick"
 length = 0.96
 step = 0.08
 tracks/0/type = "value"
-tracks/0/path = NodePath("anim_sprite:animation")
+tracks/0/path = NodePath("things_for_flip/anim_sprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -567,7 +848,7 @@ tracks/0/keys = {
 "values": [ "heavy_spinkick" ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("anim_sprite:frame")
+tracks/1/path = NodePath("things_for_flip/anim_sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -597,7 +878,7 @@ length = 0.8
 loop = true
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("anim_sprite:animation")
+tracks/0/path = NodePath("things_for_flip/anim_sprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -609,7 +890,7 @@ tracks/0/keys = {
 "values": [ "run" ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("anim_sprite:frame")
+tracks/1/path = NodePath("things_for_flip/anim_sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -626,7 +907,7 @@ resource_name = "walk"
 length = 1.2
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("anim_sprite:animation")
+tracks/0/path = NodePath("things_for_flip/anim_sprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -638,7 +919,7 @@ tracks/0/keys = {
 "values": [ "walk" ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("anim_sprite:frame")
+tracks/1/path = NodePath("things_for_flip/anim_sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -693,17 +974,31 @@ animations = [ {
 "speed": 12.0
 } ]
 
+[sub_resource type="RectangleShape2D" id=59]
+extents = Vector2( 16, 30.75 )
+
 [node name="player" type="KinematicBody2D"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 63.0 ]
+}
+get_hit_at_moment = true
 
-[node name="Anim_tree" type="AnimationTree" parent="."]
+[node name="things_for_flip" type="Node2D" parent="."]
+
+[node name="player_light_attack_hit_box" type="Area2D" parent="things_for_flip"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="things_for_flip/player_light_attack_hit_box"]
+position = Vector2( 33, 20.5 )
+shape = SubResource( 58 )
+
+[node name="Anim_tree" type="AnimationTree" parent="things_for_flip"]
 tree_root = SubResource( 17 )
 anim_player = NodePath("anim")
-active = true
 parameters/playback = SubResource( 20 )
 
-[node name="anim" type="AnimationPlayer" parent="Anim_tree"]
-root_node = NodePath("../..")
+[node name="anim" type="AnimationPlayer" parent="things_for_flip/Anim_tree"]
+root_node = NodePath("../../..")
 anims/RESET = SubResource( 1 )
 anims/attack_1 = SubResource( 2 )
 anims/attack_2 = SubResource( 4 )
@@ -712,10 +1007,21 @@ anims/dflt = SubResource( 19 )
 anims/from_atack_1_to_deflt = SubResource( 3 )
 anims/from_atack_2_to_deflt = SubResource( 5 )
 anims/from_atack_3_to_deflt = SubResource( 25 )
+anims/get_hit = SubResource( 60 )
 anims/heavy_flipkick = SubResource( 39 )
 anims/heavy_spinkick = SubResource( 40 )
 anims/run = SubResource( 38 )
 anims/walk = SubResource( 37 )
+
+[node name="anim_sprite" type="AnimatedSprite" parent="things_for_flip"]
+frames = SubResource( 36 )
+animation = "attack_3"
+
+[node name="hit_box_area" type="Area2D" parent="things_for_flip" groups=["player"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="things_for_flip/hit_box_area"]
+position = Vector2( 3, 30.25 )
+shape = SubResource( 59 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -727,9 +1033,6 @@ margin_top = -43.0
 margin_right = 19.0
 margin_bottom = -29.0
 
-[node name="anim_sprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 36 )
-animation = "idle"
-frame = 4
-
-[connection signal="animation_finished" from="Anim_tree/anim" to="." method="_on_anim_animation_finished"]
+[connection signal="area_entered" from="things_for_flip/player_light_attack_hit_box" to="." method="_on_player_light_attack_hit_box_area_entered"]
+[connection signal="animation_finished" from="things_for_flip/Anim_tree/anim" to="." method="_on_anim_animation_finished"]
+[connection signal="area_entered" from="things_for_flip/hit_box_area" to="." method="_on_hit_box_area_area_entered"]

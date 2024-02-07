@@ -1,6 +1,7 @@
 extends Node
 
 var test_value = 0
+var player_position = Vector2()
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

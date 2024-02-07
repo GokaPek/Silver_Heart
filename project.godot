@@ -88,10 +88,6 @@ config/icon="res://icon.png"
 
 GlobalForCombat="*res://folder_for_combat/Global_for_combat.gd"
 
-[display]
-
-window/size/fullscreen=true
-
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/dialogic/plugin.cfg" )

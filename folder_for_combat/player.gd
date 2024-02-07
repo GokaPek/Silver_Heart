@@ -8,6 +8,7 @@ export (int) var walk_speed = 50
 export (int) var run_speed = 200
 export (bool) var can_movement = true
 var velocity = Vector2()
+export (bool) var get_hit_at_moment = false
 #bababoy
 # Declare member variables here. Examples:
 # var a = 2
@@ -17,9 +18,10 @@ var velocity = Vector2()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	anim_machine = $Anim_tree.get("parameters/playback")
-	$Anim_tree.active = true
-
+	get_hit_at_moment = false
+	anim_machine = $things_for_flip/Anim_tree.get("parameters/playback")
+	$things_for_flip/Anim_tree.active = true
+	$things_for_flip/player_light_attack_hit_box/CollisionShape2D.set_deferred("disabled",true)
 func combat():
 	anim_tree_check()
 	if Input.is_action_just_pressed("light_attack"):
@@ -35,7 +37,8 @@ func combat():
 					if "attack_3" in avaible_list_of_animations:
 						current_list_of_animations.append("attack_3")
 	if Input.is_action_just_pressed("heavy_attack"):
-		anim_machine.travel("heavy_flipkick")
+		if velocity.length() in range(0,walk_speed+1):
+			anim_machine.travel("heavy_flipkick")
 	if Input.is_action_just_pressed("special"):
 		if velocity.length() in range(walk_speed+5,run_speed+5):
 			can_movement = false
@@ -45,23 +48,19 @@ func anim_movement():
 	if velocity.x == 0 and velocity.y == 0:
 		anim_machine.travel("dflt")
 	if velocity.length() in range(1,walk_speed+5):
-		if velocity.x > 0:
-			$anim_sprite.flip_h = false
-		if velocity.x < 0:
-			$anim_sprite.flip_h = true
 		anim_machine.travel("walk")
 	if velocity.length() in range(walk_speed+5,run_speed+5):
-		if velocity.x > 0:
-			$anim_sprite.flip_h = false
-		if velocity.x < 0:
-			$anim_sprite.flip_h = true
 		anim_machine.travel("run")
-
+func turn_on_x_flip():
+	if velocity.x > 0:
+		$things_for_flip.scale.x = 1
+	if velocity.x < 0:
+		$things_for_flip.scale.x = -1
 func movement():
 	if can_movement:
 	#	velocity.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_right")
 		velocity = Input.get_vector("ui_left","ui_right","ui_up","ui_down") * walk_speed
-		
+		turn_on_x_flip()
 		if Input.is_action_pressed("acceleration"):
 			velocity = velocity.normalized()
 			velocity *= run_speed
@@ -71,9 +70,11 @@ func movement():
 
 	
 func _physics_process(delta):
-	$Label.text = str(current_list_of_animations)
-	movement()
-	combat()
+	if get_hit_at_moment == false:
+		
+		$Label.text = str(GlobalForCombat.test_value)
+		movement()
+		combat()
 			
 			
 
@@ -117,3 +118,15 @@ func anim_tree_check():
 
 func _on_anim_animation_finished(anim_name):
 	print("ffff")
+
+func get_hit():
+	get_hit_at_moment = true
+	anim_machine.travel("get_hit")
+
+func _on_hit_box_area_area_entered(area):
+	pass
+
+
+func _on_player_light_attack_hit_box_area_entered(area):
+	if area.is_in_group("enemy"):
+		area.get_parent().get_parent().get_hit()

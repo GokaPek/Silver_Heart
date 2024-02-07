@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://folder_for_combat/main_test_combat.gd" type="Script" id=1]
 [ext_resource path="res://folder_for_combat/player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://folder_for_combat/enemy.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 438, 10 )
@@ -24,3 +25,10 @@ shape = SubResource( 1 )
 
 [node name="player" parent="." instance=ExtResource( 2 )]
 position = Vector2( -1, 282 )
+get_hit_at_moment = true
+
+[node name="enemy" parent="." instance=ExtResource( 3 )]
+position = Vector2( 200, 317 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 63.0 ]
+}
